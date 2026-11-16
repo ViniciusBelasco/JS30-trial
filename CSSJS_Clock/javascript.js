@@ -1,4 +1,5 @@
 const FULL_MINUTE = 60;
+const FULL_HOUR = 12;
 const FULL_CICLE = 360;
 const DEFAULT_START_POINT = 90;
 
@@ -8,24 +9,13 @@ const hourHand = document.querySelector('.hour-hand')
 
 function setDate() {
   const now = new Date();
-  const seconds = now.getSeconds();
-  const secondsDegrees = calculateTimeDegrees(seconds);
-
-  secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-
-  const minutes = now.getMinutes();
-  const minutesDegrees = calculateTimeDegrees(minutes);
-  minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-
-  const hours = now.getHours();
-  const hoursDegrees = calculateTimeDegrees(hours);
-  hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-
-  console.log(minutes, minutesDegrees);
+  secondHand.style.transform = `rotate(${calculateTimeDegrees(now.getSeconds(), FULL_MINUTE)}deg)`;
+  minuteHand.style.transform = `rotate(${calculateTimeDegrees(now.getMinutes(), FULL_MINUTE)}deg)`;
+  hourHand.style.transform = `rotate(${calculateTimeDegrees(now.getHours(), FULL_HOUR)}deg)`;
 }
 
-function calculateTimeDegrees(measure) {
-  return (measure / FULL_MINUTE) * FULL_CICLE + DEFAULT_START_POINT;
+function calculateTimeDegrees(measure, cicleTime) {
+  return (measure / cicleTime) * FULL_CICLE + DEFAULT_START_POINT;
 }
 
 setInterval(setDate, 1000);
