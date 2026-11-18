@@ -3,7 +3,7 @@ const inventors = [
   { first: "Isaac", last: "Newton", year: 1643, passed: 1727 },
   { first: "Galileo", last: "Galilei", year: 1564, passed: 1642 },
   { first: "Marie", last: "Curie", year: 1867, passed: 1934 },
-  { first: "Johannes", last: "Kepler", year: 1571, passed: 1030 },
+  { first: "Johannes", last: "Kepler", year: 1571, passed: 1630 },
   { first: "Nicolaus", last: "Copernicus", year: 1473, passed: 1543 },
   { first: "Max", last: "Planck", year: 1858, passed: 1947 },
   { first: "Katherine", last: "Blodgett", year: 1898, passed: 1979 },
@@ -59,17 +59,27 @@ const people = [
 
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
+console.log(
+  inventors.filter((inventor) => inventor.year >= 1500 && inventor.year < 1600),
+);
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
+console.log(inventors.map((inventor) => `${inventor.first} ${inventor.last}`));
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
+console.log(inventors.toSorted((a, b) => b.year - a.year));
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
+console.log( inventors.reduce((total, inventor) => {
+  const yearsOfLife = inventor.passed - inventor.year
+  return total + yearsOfLife;
+}, 0));
 
 // 5. Sort the inventors by years lived
+console.log( inventors.toSorted( (a, b) => (a.passed - a.year) - (b.passed - b.year) ) )
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
