@@ -13,9 +13,12 @@ const comments = [
     { text: 'Nice Nice Nice!', id: 542328 },
 ]
 
+const now = new Date;
 // Some and Every Checks
 // Array.prototype.some() // is at least one person 19 or older?
+const isAdult = people.some( person => ( now.getFullYear() - person.year  ) >= 19 )
 // Array.prototype.every() // is everyone 19 or older?
+const isEveryOneAdult = people.every( person => ( now.getFullYear() - person.year  ) >= 19 )
 
 // Array.prototype.find()
 // Find is like filter, but instead returns just the one you are looking for
